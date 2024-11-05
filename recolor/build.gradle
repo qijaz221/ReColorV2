@@ -8,7 +8,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        minSdk 24
+        minSdk 21
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -31,7 +31,7 @@ publishing {
         bar(MavenPublication) {
             groupId "qijaz221.android"
             artifactId "recolor"
-            version "2.0"
+            version "2.0.1"
             artifact("$buildDir/outputs/aar/recolor-release.aar")
         }
     }

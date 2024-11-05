@@ -16,6 +16,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url uri("https://maven.pkg.github.com/qijaz221/ReColorV2")
+            credentials {
+                username = System.getenv("GITHUB_USER")
+                password = System.getenv("GITHUB_PUBLISH_TOKEN")
+            }
+        }
     }
 }
 

@@ -1,0 +1,58 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.maven.publish)
+}
+
+android {
+    namespace 'qijaz221.android.recolor'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId "qijaz221.android"
+            artifactId "recolor"
+            version "2.0"
+            artifact("$buildDir/outputs/aar/recolor-release.aar")
+        }
+    }
+
+    repositories {
+        maven {
+            name  "GithubPackages"
+            url uri("https://maven.pkg.github.com/qijaz221/ReColorV2")
+            credentials {
+                username = System.getenv("GITHUB_USER")
+                password = System.getenv("GITHUB_PUBLISH_TOKEN")
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation libs.cardview
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
